@@ -16,5 +16,5 @@
 navegador. Use a landing page do TailwindCSS como site estático dentro do 
 container.**:  
 
-- Primeiramente vamos pegar imagem do Nginx do DockerHub ![Texto alternativo](img/exe1/dockerHub.png) (img)
-- Depois iremos executar o comando (cmd) que sobe o container do Nginx e copia o diretorio da landing page do TailwindCSS pro diretorio onde o Nginx busca o arquivo index.html e faz a conexao entre a porta do host e do container.(img)(img)  
+- Primeiramente vamos pegar imagem do Nginx do DockerHub ![nginx](img/exe1/dockerHub.png) ![docker pull](img/exe1/dockerPull.png)
+- Depois iremos executar o comando (cmd) que sobe o container do Nginx e copia o diretorio da landing page do TailwindCSS pro diretorio onde o Nginx busca o arquivo index.html e faz a conexao entre a porta do host e do container.![running](img/exe1/containerRunning.png)![Texto alternativo](img/exe1/pageDocker.png)
