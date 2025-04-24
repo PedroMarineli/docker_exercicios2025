@@ -8,6 +8,8 @@
   - [2. Criando e rodando um container interativo](#2-facil)
   - [3. Listando e removendo containers](#3-facil)
   - [4. Criando um Dockerfile para uma aplicação simples em Python](#4-facil)
+-[Médio](#-medio)
+  - [5. Criando e utilizando volumes para persistência de dados](#5-medio)
 
 ## 🔧 Exercícios
 
@@ -23,3 +25,52 @@ container.**:
 **Inicie um container Ubuntu e interaja com o terminal dele. Teste um script Bash que 
 imprime logs do sistema ou instala pacotes de forma interativa.**:  
 - Primeiramente vamos pegar imagem do Nginx do DockerHub
+
+### 3. Listando e removendo containers
+**Inicie um container Ubuntu e interaja com o terminal dele. Teste um script Bash que 
+imprime logs do sistema ou instala pacotes de forma interativa.**: 
+
+### 4. Criando um Dockerfile para uma aplicação simples em Python
+**Inicie um container Ubuntu e interaja com o terminal dele. Teste um script Bash que 
+imprime logs do sistema ou instala pacotes de forma interativa.**: 
+
+### 5. Criando e utilizando volumes para persistência de dados
+```yaml
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "80:80"
+    environment:
+      - DATABASE_DB=example
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=/run/secrets/db-password  
+      - DATABASE_HOST=db
+    depends_on:
+      - db
+    secrets:
+      - db-password
+
+  db:
+    image: mysql:8.0.27
+    environment:
+      - MYSQL_DATABASE=example
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password  
+    volumes:
+      - db-data:/var/lib/mysql  
+    secrets:
+      - db-password
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: db/password.txt
+```
