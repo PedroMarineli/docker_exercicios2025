@@ -3,6 +3,7 @@
 **Objetivo**: Realizar a lista de exercício disponibilizada e colocar prints e comandos para evidenciar a realizacao da mesma.
 
 ## 📋 Sumário
+
 - [Fácil](#-facil)
   - [1. Rodando um container básico](#1-facil)
   - [2. Criando e rodando um container interativo](#2-facil)
@@ -22,44 +23,79 @@
 ## 🔧 Exercícios
 
 ### 1. Rodando um container básico
+
 **Execute um container usando a imagem do Nginx e acesse a página padrão no 
 navegador. Use a landing page do TailwindCSS como site estático dentro do 
 container.**:  
 
 - Primeiramente vamos pegar imagem do Nginx do DockerHub ![Pagina da imagem do Nginx no DockerHub](img/exe1/dockerHub.png) ![cmd mostrando o docker pull](img/exe1/dockerPull.png)
+
 - Depois iremos executar o comando `docker run --name meu-nginx -v [seudiretorio]:/usr/share/nginx/html -d -p 81:80 nginx` que sobe o container do Nginx e copia o diretorio da landing page do TailwindCSS pro diretorio onde o Nginx busca o arquivo index.html e faz a conexao entre a porta do host e do container.![cmd mostrando o comando docker run](img/exe1/containerRunning.png)![acessando a pag no navegador](img/exe1/pageDocker.png)
 
 ### 2. Criando e rodando um container interativo
+
 **Inicie um container Ubuntu e interaja com o terminal dele. Teste um script Bash que
-imprime logs do sistema ou instala pacotes de forma interativa**:  
-- Primeiramente vamos pegar imagem do Nginx do DockerHub
+imprime logs do sistema ou instala pacotes de forma interativa**:
+
+- cmd mostrando o comando docker pull com a imagem do Ubuntu
 
 ![cmd mostrando o comando docker pull com a img do Ubuntu](img/exe2/pullUbuntu.png)
+
+- cmd rodando o script interativo
+
 ![rodando o script interativo](img/exe2/script.png)
+
+- cmd mostrando o comando docker run com a imagem do Ubuntu
+
 ![cmd mostrando o comando docker run com a img do Ubuntu](img/exe2/runUbuntu.png)
+
+- Imagem utilizada:
+
 ![Pagina da imagem do Ubuntu no DockerHub](img/exe2/ubuntuDockerHub.png)
 
 ### 3. Listando e removendo containers
+
 **Liste todos os containers em execução e parados, pare um container em execução e
 remova um container específico**:
+
+- cmd
 
 ![mostrando o containeres ativos](img/exe3/dockerPs.png)
 ![parando e removendo o conteineres](img/exe3/stopping.png)
 ![mostrando o containeres ativos dos comandos](img/exe3/dockerPsAfter.png)
 
 ### 4. Criando um Dockerfile para uma aplicação simples em Python
+
 **Crie um Dockerfile para uma aplicação Flask que retorna uma mensagem ao acessar
 um endpoint, para isso utilize o projeto Docker Flask**: 
 
+- cmd
+
 ![cmd mostrando o build do flask](img/exe4/buildFlask.png)
+
+- navegador
+
 ![navegador mostrado a pagina funcionando](img/exe4/pageHello.png)
+
+- rancher
+
 ![rancher mostrando o containder ativo](img/exe4/rancherContainer.png)
 
 ### 5. Criando e utilizando volumes para persistência de dados
+
 **Execute um container MySQL e configure um volume para armazenar os dados do
 banco de forma persistente. Para aplicar esse conceito você pode utilizar o reactexpress-mysql**:
+
+- cmd 
+
 ![cmd mostrado o docker compose](img/exe5/dockerComposeSql.png)
+
+- rancher
+
 ![rancher mostrando os conteineres ativos](img/exe5/rancherSql.png)
+
+- compose file utilizado
+
 ```yaml
 services:
   backend:
@@ -99,14 +135,29 @@ secrets:
   db-password:
     file: db/password.txt
 ```
+
 ### 6. Criando e rodando um container multi-stage
+
 **Crie uma rede Docker personalizada e faça dois containers, um Node.js e um
 MongoDB, se comunicarem, sugestão, utilize o projeto React Express + Mongo**:
 
+- imagem do go depois do multi stage
+
 ![imagem do go depois do multi stage](img/exe6/goAfter.png)
+
+- imagem do go com o build normal
+
 ![imagem do go com o build normal](img/exe6/golangImgBefore.png)
+
+- navegador
+
 ![pagina mostrando o servico funcionando](img/exe6/pageGo.png)
+
+- cmd
+
 ![cmd mostrando o run](img/exe6/runMulti.png)
+
+- Dockerfile utilizado
 
 ```Dockerfile
 FROM golang:1.19 AS build-stage
@@ -133,12 +184,23 @@ USER nonroot:nonroot
 ENTRYPOINT ["/docker-gs-ping"]
 ```
 ### 7. Construindo uma rede Docker para comunicação entre containers
+
 **Crie uma rede Docker personalizada e faça dois containers, um Node.js e um
 MongoDB, se comunicarem, sugestão, utilize o projeto React Express + Mongo**:
 
+- cmd
+
 ![cmd mostrnado o comamando compose](img/exe7/composeReactMongo.png)
+
+- rancher
+
 ![rancher mostrando os conteineres ativos](img/exe7/rancherReactMongo.png)
+
+- navegador
+
 ![pagina mostrando o servico funcionando](img/exe7/todosPage.png)
+
+- compose file utilizado
 
 ```yaml
 services:
@@ -179,14 +241,26 @@ networks:
 volumes:
   mongo_data:
 ```
+
 ### 8. Criando um compose file para rodar uma aplicação com banco de dados
+
 **Utilize Docker Compose para configurar uma aplicação com um banco de
 dados PostgreSQL, use para isso o projeto pgadmin**:
 
+- cmd
+
 ![cdm mostrando o comando compose](img/exe8/dockerComposePostgree.png)
+
+- navegador
+
 ![pagina de login fucionando](img/exe8/pageLogin.png)
 ![pagina principal funcionando](img/exe8/pgAdmPage.png)
+
+- rancher
+
 ![rancher mostrando os containeres funcionando](img/exe8/rancherPostgreee.png)
+
+- compose file utilizado
 
 ```yaml
 services:
@@ -207,14 +281,26 @@ services:
     ports:
       - "5050:80"
 ```
+
 ### 9. Criando uma imagem personalizada com um servidor web e arquivos estáticos
+
 **Construa uma imagem baseada no Nginx ou Apache, adicionando um site
 HTML/CSS estático. Utilize a landing page do Creative Tim para criar uma página
 moderna hospedada no container**:
 
+- cmd
+
 ![mostrando o containeres ativos](img/exe9/build%20material.png)
+
+- navegador
+
 ![mostrando o containeres ativos](img/exe9/pageMaterial.png)
+
+- rancher
+
 ![mostrando o containeres ativos](img/exe9/rancherMaterial.png)
+
+- Dockerfile utilizado
 
 ```Dockerfile
 FROM nginx:alpine
@@ -225,15 +311,27 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 ```
+
 ### 10. Evitar execução como root
+
 **Ao rodar containers com o usuário root, você expõe seu sistema a riscos maiores em
 caso de comprometimento. Neste exercício, você deverá criar um Dockerfile para
 uma aplicação simples (como um script Python ou um servidor Node.js) e configurar
 a imagem para rodar com um usuário não-root**:
 
+- cmd
+
 ![mostrando o containeres ativos](img/exe10/runUser.png)
+
+- navegador (Site indisponível pois o usuario não tem permissão para acessar o Nginx)
+
 ![mostrando o containeres ativos](img/exe10/siteIndisponivel.png)
+
+- cmd (Comfirmando o usuario)
+
 ![mostrando o containeres ativos](img/exe10/whoAmI.png)
+
+- Dockerfile utilizado
 
 ```Dockerfile
 FROM nginx:alpine
@@ -249,42 +347,47 @@ USER appuser
 
 CMD ["sh", "-c", "nginx -g 'daemon off;' || sleep infinity"]
 ```
+
 ### 11. Analisar imagem Docker com Trivy
+
 **Trivy é uma ferramenta open source para análise de vulnerabilidades em imagens
 Docker. Neste exercício, você irá analisar uma imagem pública, como python:3.9 ou
 node:16, em busca de vulnerabilidades conhecidas**:
 
+- cmd
+
 ![mostrando o containeres ativos](img/exe11/summary.png)
 ![mostrando o containeres ativos](img/exe11/trivyInstall.png)
 
-Bibliotecas do sistema (Debian):
-libaom3
-libbluetooth-dev
-libbluetooth3
-libexpat1
-libexpat1-dev
-libharfbuzz0b
-libldap-2.5-0
-libopenexr-3-1-30
-libopenexr-dev
-libperl5.36
-libtiff-dev
-libtiff6
-libtiffxx6
-libxml2
-libxml2-dev
-linux-libc-dev
-perl
-perl-base
-perl-modules-5.36
-zlib1g
-zlib1g-dev
+**Bibliotecas do sistema (Debian):**
+- libaom3
+- libbluetooth-dev
+- libbluetooth3
+- libexpat1
+- libexpat1-dev
+- libharfbuzz0b
+- libldap-2.5-0
+- libopenexr-3-1-30
+- libopenexr-dev
+- libperl5.36
+- libtiff-dev
+- libtiff6
+- libtiffxx6
+- libxml2
+- libxml2-dev
+- linux-libc-dev
+- perl
+- perl-base
+- perl-modules-5.36
+- zlib1g
+- zlib1g-dev
 
-Bibliotecas Python:
-setuptools (python-pkg)
+**Bibliotecas Python:**
+- setuptools (python-pkg)
 
 
-atualizar as bibliotecas e dependências do sistema operacional pode ajudar a reduzir vulnerabilidades, outra solucao é trocar para um sistema operacional mais leve, como o Alpine, que tem menos dependências e, portanto, menos vulnerabilidades potenciais.
+- Atualizar as bibliotecas e dependências do sistema operacional pode ajudar a reduzir vulnerabilidades, outra solucao é trocar para um sistema operacional mais leve, como o Alpine, que tem menos dependências e, portanto, menos vulnerabilidades potenciais.
+
 ### 12. Corrigir vulnerabilidades encontradas
 **Após identificar vulnerabilidades com ferramentas como o Trivy, o próximo passo é
 corrigi-las. Imagens grandes e genéricas frequentemente trazem bibliotecas
@@ -292,6 +395,8 @@ desnecessárias e vulneráveis, além de usarem o usuário root por padrão. Nes
 exercício, você irá trabalhar com um exemplo de Dockerfile com más práticas e
 aplicar melhorias para construir uma imagem mais segura e enxuta. Identifique as
 melhorias e gere uma nova versão de Dockerfile**:
+
+- arquivos atualizados
 
 ```Dockerfile
 FROM python:3.9-slim
@@ -317,12 +422,11 @@ CMD ["python", "app.py"]
 ```
 
 ```
-#atualize as dependencias
 flask>=2.0.0
 requests>=2.28.0
 ```
 
-Substituí python:3.9 por python:3.9-slim que é uma versão mais enxuta e contém menos pacotes potencialmente vulneráveis
-Criei um usuário dedicado appuser para executar a aplicação
-Atualizei o pip antes de instalar as dependências
-Adicionei apt-get update && apt-get upgrade -y para garantir que todos os pacotes do sistema estejam atualizados
+\- Substituí `python:3.9` por `python:3.9-slim`, que é uma versão mais enxuta e contém menos pacotes potencialmente vulneráveis.  
+\- Criei um usuário dedicado `appuser` para executar a aplicação.  
+\- Atualizei o `pip` antes de instalar as dependências.  
+\- Adicionei `apt-get update && apt-get upgrade -y` para garantir que todos os pacotes do sistema estejam atualizados.  
