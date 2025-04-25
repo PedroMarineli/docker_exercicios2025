@@ -100,12 +100,13 @@ USER nonroot:nonroot
 ENTRYPOINT ["/docker-gs-ping"]
 ```
 ### 7. Construindo uma rede Docker para comunicação entre containers
+
 ```yaml
 services:
   frontend:
     build: ./frontend
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
@@ -138,4 +139,24 @@ networks:
 
 volumes:
   mongo_data:
+```
+### 8. Criando um compose file para rodar uma aplicação com banco de dados
+```yaml
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=pw23
+      - POSTGRES_DB=db_base
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=teste@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=teste123
+    ports:
+      - "5050:80"
 ```
