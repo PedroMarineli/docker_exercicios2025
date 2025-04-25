@@ -185,3 +185,33 @@ USER appuser
 
 CMD ["sh", "-c", "nginx -g 'daemon off;' || sleep infinity"]
 ```
+### 11. Analisar imagem Docker com Trivy
+
+Bibliotecas do sistema (Debian):
+libaom3
+libbluetooth-dev
+libbluetooth3
+libexpat1
+libexpat1-dev
+libharfbuzz0b
+libldap-2.5-0
+libopenexr-3-1-30
+libopenexr-dev
+libperl5.36
+libtiff-dev
+libtiff6
+libtiffxx6
+libxml2
+libxml2-dev
+linux-libc-dev
+perl
+perl-base
+perl-modules-5.36
+zlib1g
+zlib1g-dev
+
+Bibliotecas Python:
+setuptools (python-pkg)
+
+
+atualizar as bibliotecas e dependências do sistema operacional pode ajudar a reduzir vulnerabilidades, outra solucao é trocar para um sistema operacional mais leve, como o Alpine, que tem menos dependências e, portanto, menos vulnerabilidades potenciais.
