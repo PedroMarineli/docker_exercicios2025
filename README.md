@@ -160,3 +160,28 @@ services:
     ports:
       - "5050:80"
 ```
+### 9. Criando uma imagem personalizada com um servidor web e arquivos estáticos
+```Dockerfile
+FROM nginx:alpine
+
+COPY . /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+### 10. Evitar execução como root
+```Dockerfile
+FROM nginx:alpine
+
+COPY . /usr/share/nginx/html
+
+EXPOSE 80
+
+RUN adduser -D appuser && \
+    chown -R appuser:appuser /usr/share/nginx/html
+
+USER appuser
+
+CMD ["sh", "-c", "nginx -g 'daemon off;' || sleep infinity"]
+```
